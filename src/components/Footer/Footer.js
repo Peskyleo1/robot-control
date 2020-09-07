@@ -33,7 +33,7 @@ class Footer extends React.Component {
             © {new Date().getFullYear()} made with{" "}
             <i className="tim-icons icon-heart-2" /> by{" "}
             <a
-              href="https://www.creative-tim.com/?ref=bdr-user-archive-footer"
+              href="https://liflip.com"
               target="_blank"
             >
               LifLip
