@@ -54,6 +54,8 @@ import {
   chartExample4
 } from "variables/charts.js";
 
+import warehouseImage from 'assets/img/warehouse.jpg';
+
 class Dashboard extends React.Component {
   constructor(props) {
     super(props);
@@ -71,7 +73,7 @@ class Dashboard extends React.Component {
       <>
         <div className="content">
           <Card>
-              <CardImg top src={require("../assets/img/warehouse.jpg")} alt={"Loading Video..."}></CardImg>
+              <CardImg top src={warehouseImage} alt={"Loading Video..."}></CardImg>
               <CardBody>
                   <CardTitle>Controls</CardTitle>
                   <Row>
