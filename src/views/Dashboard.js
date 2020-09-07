@@ -78,35 +78,35 @@ class Dashboard extends React.Component {
                   <CardTitle>Controls</CardTitle>
                   <Row>
                     <Col>
-                    <Button color="primary" style={{width: '100%', height: '100px'}}><i className="tim-icons icon-light-3" /></Button>
+                    <Button color="primary" style={{width: '100%', height: '100px', padding: '0'}}><i className="tim-icons icon-light-3" /></Button>
                     </Col>
                     <Col>
-                      <Button style={{width: '100%', height: '100px'}}><i className="tim-icons icon-minimal-up" /></Button>
+                      <Button style={{width: '100%', height: '100px', padding: '0'}}><i className="tim-icons icon-minimal-up" /></Button>
                     </Col>
                     <Col>
-                    <Button color="primary" style={{width: '100%', height: '100px'}}><i className="tim-icons icon-controller" /></Button>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col>
-                    <Button style={{width: '100%', height: '100px'}}><i className="tim-icons icon-minimal-left" /></Button>
-                    </Col>
-                    <Col>
-                    <Button style={{width: '100%', height: '100px'}}><i className="tim-icons icon-button-pause" /></Button>
-                    </Col>
-                    <Col>
-                    <Button style={{width: '100%', height: '100px'}}><i className="tim-icons icon-minimal-right" /></Button>
+                    <Button color="primary" style={{width: '100%', height: '100px', padding: '0'}}><i className="tim-icons icon-controller" /></Button>
                     </Col>
                   </Row>
                   <Row>
                     <Col>
-                    <Button color="primary" style={{width: '100%', height: '100px'}}><i className="tim-icons icon-video-66" /></Button>
+                    <Button style={{width: '100%', height: '100px', padding: '0'}}><i className="tim-icons icon-minimal-left" /></Button>
                     </Col>
                     <Col>
-                    <Button style={{width: '100%', height: '100px'}}><i className="tim-icons icon-minimal-down" /></Button>
+                    <Button style={{width: '100%', height: '100px', padding: '0'}}><i className="tim-icons icon-button-pause" /></Button>
                     </Col>
                     <Col>
-                    <Button color="primary" style={{width: '100%', height: '100px'}}><i className="tim-icons icon-zoom-split" /></Button>
+                    <Button style={{width: '100%', height: '100px', padding: '0'}}><i className="tim-icons icon-minimal-right" /></Button>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col>
+                    <Button color="primary" style={{width: '100%', height: '100px', padding: '0'}}><i className="tim-icons icon-video-66" /></Button>
+                    </Col>
+                    <Col>
+                    <Button style={{width: '100%', height: '100px', padding: '0'}}><i className="tim-icons icon-minimal-down" /></Button>
+                    </Col>
+                    <Col>
+                    <Button color="primary" style={{width: '100%', height: '100px', padding: '0'}}><i className="tim-icons icon-zoom-split" /></Button>
                     </Col>
                   </Row>
               </CardBody>
