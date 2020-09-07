@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "688b3cbe4351d0aec4ccffc5629c0ee8",
+    "revision": "db4360ec7cb4728a9d58e09e33af3d17",
     "url": "/black-dashboard-react/index.html"
   },
   {
-    "revision": "4be737ec375d1db6ff8b",
-    "url": "/black-dashboard-react/static/css/main.6cd46973.chunk.css"
+    "revision": "bda6b851eb6079dbfadf",
+    "url": "/black-dashboard-react/static/css/main.947b66a4.chunk.css"
   },
   {
     "revision": "f41d703b16a381150ca3",
@@ -16,12 +16,12 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/black-dashboard-react/static/js/2.77266afe.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "4be737ec375d1db6ff8b",
-    "url": "/black-dashboard-react/static/js/main.c6e0cdde.chunk.js"
+    "revision": "bda6b851eb6079dbfadf",
+    "url": "/black-dashboard-react/static/js/main.f85ade5e.chunk.js"
   },
   {
     "revision": "dc192b57bfed2afd6be1ea5558f17255",
-    "url": "/black-dashboard-react/static/js/main.c6e0cdde.chunk.js.LICENSE.txt"
+    "url": "/black-dashboard-react/static/js/main.f85ade5e.chunk.js.LICENSE.txt"
   },
   {
     "revision": "c6573b9adb07574e9434",
