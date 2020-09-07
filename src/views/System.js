@@ -125,8 +125,8 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Time of Flight</CardTitle>
-                        <CardText>22 min</CardText>
-                        <Progress value="0"></Progress>
+                        <CardText>22 cm</CardText>
+                        <Progress value="70"></Progress>
                     </CardBody>
                 </Card>
             </Col>
