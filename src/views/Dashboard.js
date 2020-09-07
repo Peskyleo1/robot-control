@@ -71,7 +71,7 @@ class Dashboard extends React.Component {
       <>
         <div className="content">
           <Card>
-              <CardImg top src="./assets/img/header.jpg" alt={"Loading Video..."}></CardImg>
+              <CardImg top src={require("../assets/img/warehouse.jpg")} alt={"Loading Video..."}></CardImg>
               <CardBody>
                   <CardTitle>Controls</CardTitle>
                   <Row>

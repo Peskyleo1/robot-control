@@ -105,8 +105,8 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Humidity</CardTitle>
-                        <CardText>50%</CardText>
-                        <Progress value="50"></Progress>
+                        <CardText>NOT RESPONDING</CardText>
+                        <Progress color="danger" value="100"></Progress>
                     </CardBody>
                 </Card>
             </Col>
