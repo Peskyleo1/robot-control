@@ -25,6 +25,82 @@
     <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
     <title>Robot Control</title>
+
+    <script type="text/javascript" src="/robo/jquery-1.10.2.min.js"></script>
+    <script src="jscolor-2.3.3%202/jscolor.js"></script>
+
+    <script>
+        $(document).ready(
+            function() {
+                setInterval(function() {
+                    loadcache();
+                }, 1000);
+            });
+
+        var phi = 0, flipped = 0, mirrored = 0;
+        function setXformClass () {
+            $('.xform').each(function(idx,el) {
+                el.className = "xform x" +(flipped ? "-flipped":"") + (mirrored ? "-mirrored" : "") + "-rotated-" + phi;
+            });
+        }
+
+
+        function setImg(action){
+        //alert("img1");
+            img = document.getElementById('staticimg')
+            if(action ==1)img.src="http://<?php print $ip; ?>:8080/?action=snapshot"
+            if(action ==2)img.src="http://<?php print $ip; ?>/robo/camera.gif"
+        }
+        
+
+        function loadcache()
+        {
+            var xmlhttp;
+            if (window.XMLHttpRequest)
+            {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }
+            else
+            {// code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function()
+            {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200)
+                {
+                    $msgxml = xmlhttp.responseText;
+
+                    //alert($msgxml);
+                    xmlDoc = $.parseXML( $msgxml );
+                    $xml = $( xmlDoc );
+                    //$value1 = $xml.find( "rss" ); $( "#xmlmess" ).text( $value1.text() );
+                    //Sensore Temperatura
+                    $value1 = $xml.find( "temp" ); $( "#temp" ).text( $value1.text() );
+                    //Sensore Hum
+                    $value1 = $xml.find( "hum" ); $( "#hum" ).text( $value1.text() );
+                    //Sensore Flow
+                    $value1 = $xml.find( "flowrate" ); $( "#flow" ).text( $value1.text() );
+                    //Sensore Water Level
+                    $value1 = $xml.find( "gleveld" ); $( "#WL" ).text( $value1.text() );
+                    //Sensore ToF
+                    $value1 = $xml.find( "tof" ); $( "#ToF" ).text( $value1.text() );
+                    //Sensore Ping
+                    $value1 = $xml.find( "ping" ); $( "#ping" ).text( $value1.text() );
+                    //Sensore Corrente
+                    $value1 = $xml.find( "amperometro" ); $( "#current" ).text( $value1.text() );
+                    //Sensore Ozono
+                    $value1 = $xml.find( "ozono" ); $( "#oz" ).text( $value1.text() );
+                    //Limit Switch
+                    $value1 = $xml.find( "finecorsauno" ); $( "#switch1" ).text( $value1.text() );
+                    $value1 = $xml.find( "finecorsadue" ); $( "#switch2" ).text( $value1.text() );
+                    //Sensore Lux
+                    $value1 = $xml.find( "luxuno" ); $( "#lux" ).text( $value1.text() );
+                }
+            }
+            xmlhttp.open("GET","/robo/getCacheValue.php?test=temp$hum$flowrate$gleveld$tof$ping$amperometro$ozono$finecorsauno$finecorsadue$luxuno",true);
+            xmlhttp.send();
+        }
+    </script>
   </head>
   <body>
     <noscript>
