@@ -81,7 +81,7 @@
                     //Sensore Flow
                     $value1 = $xml.find( "flowrate" ); $( "#flow" ).text( $value1.text() );
                     //Sensore Water Level
-                    $value1 = $xml.find( "gleveld" ); $( "#WL" ).text( $value1.text() );
+                    $value1 = $xml.find( "gleveld" ); $( "#WL" ).text( $value1.text() ); $( "#WLval" ).val( $value1.toString());
                     //Sensore ToF
                     $value1 = $xml.find( "tof" ); $( "#ToF" ).text( $value1.text() );
                     //Sensore Ping

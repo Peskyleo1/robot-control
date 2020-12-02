@@ -111,6 +111,8 @@ function loadXMLDoc( action)
 
 function testClick(param){
     console.log("clicked" + param);
+    console.log(this.color);
+    this.color = "secondary";
 }
 
 class System extends React.Component {
@@ -191,8 +193,8 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Water Level</CardTitle>
-                        <CardText id="WL">76%</CardText>
-                        <Progress value="76"></Progress>
+                        <CardText id="WL">76</CardText>
+                        <Progress id="WLval" value={document.getElementById("#WL").innerHTML}></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -242,7 +244,20 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Light</CardTitle>
                         <CardText>On</CardText>
-                        <Button color="primary" onClick={() => loadXMLDoc(1)} style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
+                        <label className="switch">
+                            <input type="checkbox" value="0" onChange={(event) => {
+                                if(this.value == "1"){
+                                    this.value = "0";
+                                    loadXMLDoc(2);
+                                    console.log("off");
+                                }else{
+                                    this.value = "1";
+                                    loadXMLDoc(1);
+                                    console.log("on");
+                                }
+                            }}></input>
+                            <span className="slider round"></span>
+                        </label>
                     </CardBody>
                 </Card>
             </Col>
@@ -251,16 +266,108 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Pump</CardTitle>
                         <CardText>On</CardText>
-                        <Button color="primary" onClick={testClick} style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
+                        <label className="switch">
+                            <input type="checkbox" value="0" onChange={(event) => {
+                                if(this.value == "1"){
+                                    this.value = "0";
+                                    loadXMLDoc(9);
+                                    console.log("off");
+                                }else{
+                                    this.value = "1";
+                                    loadXMLDoc(8);
+                                    console.log("on");
+                                }
+                            }}></input>
+                            <span className="slider round"></span>
+                        </label>
                     </CardBody>
                 </Card>
             </Col>
             <Col>
                 <Card style={{width: '100%'}}>
                     <CardBody>
-                        <CardTitle>Hook</CardTitle>
-                        <CardText>Attached</CardText>
-                        <Button color="primary" style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
+                        <CardTitle>RGB</CardTitle>
+                        <CardText>Off</CardText>
+                        <label className="switch">
+                            <input type="checkbox" value="0" onChange={(event) => {
+                                if(this.value == "1"){
+                                    this.value = "0";
+                                    loadXMLDoc(11);
+                                    console.log("off");
+                                }else{
+                                    this.value = "1";
+                                    loadXMLDoc(10);
+                                    console.log("on");
+                                }
+                            }}></input>
+                            <span className="slider round"></span>
+                        </label>
+                    </CardBody>
+                </Card>
+            </Col>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Controls</CardTitle>
+                        <CardText>Inactive</CardText>
+                        <label className="switch">
+                            <input type="checkbox" value="0" onChange={(event) => {
+                                if(this.value == "1"){
+                                    this.value = "0";
+                                    loadXMLDoc(23);
+                                    console.log("off");
+                                }else{
+                                    this.value = "1";
+                                    loadXMLDoc(22);
+                                    console.log("on");
+                                }
+                            }}></input>
+                            <span className="slider round"></span>
+                        </label>
+                    </CardBody>
+                </Card>
+            </Col>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Motor</CardTitle>
+                        <CardText>Detached</CardText>
+                        <label className="switch">
+                            <input type="checkbox" value="0" onChange={(event) => {
+                                if(this.value == "1"){
+                                    this.value = "0";
+                                    loadXMLDoc(25);
+                                    console.log("off");
+                                }else{
+                                    this.value = "1";
+                                    loadXMLDoc(24);
+                                    console.log("on");
+                                }
+                            }}></input>
+                            <span className="slider round"></span>
+                        </label>
+                    </CardBody>
+                </Card>
+            </Col>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Serial</CardTitle>
+                        <CardText>Inactive</CardText>
+                        <label className="switch">
+                            <input type="checkbox" value="0" onChange={(event) => {
+                                if(this.value == "1"){
+                                    this.value = "0";
+                                    loadXMLDoc(27);
+                                    console.log("off");
+                                }else{
+                                    this.value = "1";
+                                    loadXMLDoc(26);
+                                    console.log("on");
+                                }
+                            }}></input>
+                            <span className="slider round"></span>
+                        </label>
                     </CardBody>
                 </Card>
             </Col>
@@ -269,7 +376,34 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Spray</CardTitle>
                         <CardText>Inactive</CardText>
-                        <Button color="primary" style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
+                        <Button onClick={() => loadXMLDoc(7)} color="primary" style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
+                    </CardBody>
+                </Card>
+            </Col>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Cam UV</CardTitle>
+                        <CardText>Checking</CardText>
+                        <Button onClick={() => loadXMLDoc(14)} color="primary" style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
+                    </CardBody>
+                </Card>
+            </Col>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Test Seq</CardTitle>
+                        <CardText>Inactive</CardText>
+                        <Button onClick={() => loadXMLDoc(12)} color="primary" style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
+                    </CardBody>
+                </Card>
+            </Col>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Seq 1</CardTitle>
+                        <CardText>Inactive</CardText>
+                        <Button onClick={() => loadXMLDoc(13)} color="primary" style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
                     </CardBody>
                 </Card>
             </Col>
