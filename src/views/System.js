@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, {useState} from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // react plugin used to create charts
@@ -109,11 +109,75 @@ function loadXMLDoc( action)
             xmlhttp.send();
         }
 
+
+//********** TESTING ***********/
+
+
 function testClick(param){
-    console.log("clicked" + param);
-    console.log(this.color);
-    this.color = "secondary";
+    console.log("click");
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        //Wait for document to be loaded
+    });
+    if(document.getElementById("WL")) {
+        console.log("WL exists");
+        document.getElementById("WL").innerHTML = param;
+    } else {
+        console.log("WL does not exist");
+    }
+    
+    
 }
+document.addEventListener("DOMContentLoaded", function(event) { 
+    //Wait for document to be loaded
+    document.getElementById("WL").addEventListener('DOMSubtreeModified', myFunction);
+
+    function myFunction(e) {
+        //WL Changed
+        console.log(document.getElementById("WL").innerHTML);
+        if(document.getElementById("WL")) {
+            console.log("WL exists");
+            return document.getElementById("WL").innerHTML;
+        } else {
+            console.log("WL does not exist");
+            return "1";
+        }
+    }
+});
+
+
+
+//ProgressBar Gets value itself from innerHtml
+function getValue(param){
+    document.addEventListener("DOMSubtreeModified", function(event) { 
+        //Wait for document to be loaded
+        //console.log("changes");
+        
+    });
+    if(document.getElementById("WL")) {
+        console.log("WL exists");
+        return document.getElementById("WL").innerHTML;
+    } else {
+        console.log("WL does not exist");
+        return "1";
+    }
+}
+
+//Passes value to progressbar
+function passValue(param){
+    document.addEventListener("DOMContentLoaded", function(event) { 
+        //Wait for document to be loaded
+        
+    });
+    if(document.getElementById("WLval")) {
+        console.log("WLval exists");
+        document.getElementById("WLval").value = document.getElementById("WL").innerHTML;
+    } else {
+        console.log("WLval does not exist");
+        return "1";
+    }
+}
+
+//*********************/
 
 class System extends React.Component {
   constructor(props) {
@@ -122,12 +186,14 @@ class System extends React.Component {
       bigChartData: "data1"
     };
   }
+  
   setBgChartData = name => {
     this.setState({
       bigChartData: name
     });
   };
   render() {
+    let water;
     return (
       <>
         <div className="content">
@@ -166,7 +232,7 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Temperature</CardTitle>
-                        <CardText>22°C</CardText>
+                        <CardText id="temp">22°C</CardText>
                         <Progress value="33"></Progress>
                     </CardBody>
                 </Card>
@@ -175,7 +241,7 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Flow</CardTitle>
-                        <CardText>0.2 L/min</CardText>
+                        <CardText id="flow">0.2 L/min</CardText>
                         <Progress value="20"></Progress>
                     </CardBody>
                 </Card>
@@ -184,8 +250,8 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Humidity</CardTitle>
-                        <CardText>NOT RESPONDING</CardText>
-                        <Progress color="danger" value="100"></Progress>
+                        <CardText id="hum">NOT RESPONDING</CardText>
+                        <Progress value="100"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -193,8 +259,8 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Water Level</CardTitle>
-                        <CardText id="WL">76</CardText>
-                        <Progress id="WLval" value={document.getElementById("#WL").innerHTML}></Progress>
+                        <CardText id="WL" onChange={() => console.log("change")}>76</CardText>
+                        <Progress id="WLval" value={getValue()}></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -204,7 +270,7 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Time of Flight</CardTitle>
-                        <CardText>22 cm</CardText>
+                        <CardText id="ToF">22 cm</CardText>
                         <Progress value="70"></Progress>
                     </CardBody>
                 </Card>
@@ -213,7 +279,7 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Current</CardTitle>
-                        <CardText>0.2 Amps</CardText>
+                        <CardText id="current">0.2 Amps</CardText>
                         <Progress value="24"></Progress>
                     </CardBody>
                 </Card>
@@ -222,7 +288,7 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Ping</CardTitle>
-                        <CardText>20 ms</CardText>
+                        <CardText id="ping">20 ms</CardText>
                         <Progress value="20"></Progress>
                     </CardBody>
                 </Card>
@@ -231,8 +297,46 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Ozone</CardTitle>
-                        <CardText>289 DU</CardText>
+                        <CardText id="oz">289 DU</CardText>
                         <Progress value="20"></Progress>
+                    </CardBody>
+                </Card>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Light</CardTitle>
+                        <CardText id="lux">22 cm</CardText>
+                        <Progress value="70"></Progress>
+                    </CardBody>
+                </Card>
+            </Col>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Switch1</CardTitle>
+                        <CardText id="switch1">0.2 Amps</CardText>
+                        <Progress value="24"></Progress>
+                    </CardBody>
+                </Card>
+            </Col>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Switch1</CardTitle>
+                        <CardText id="switch2">20 ms</CardText>
+                        <Progress value="20"></Progress>
+                    </CardBody>
+                </Card>
+            </Col>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Empty</CardTitle>
+                        <CardText id="Test">289 DU</CardText>
+                        <Progress color="danger" value="20"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -371,6 +475,8 @@ class System extends React.Component {
                     </CardBody>
                 </Card>
             </Col>
+            </Row>
+            <Row>
             <Col>
                 <Card style={{width: '100%'}}>
                     <CardBody>
@@ -409,8 +515,8 @@ class System extends React.Component {
             </Col>
         </Row>
         <div >
-            <button onClick={() => loadXMLDoc(1)} type="button">UV On</button>
-            <button onClick={() => loadXMLDoc(2)} type="button">UV Off</button>
+            <button onClick={() => testClick("88")} type="button">UV On</button>
+            <button onClick={() => testClick("22")} type="button">UV Off</button>
         </div>
         </div>
       </>
