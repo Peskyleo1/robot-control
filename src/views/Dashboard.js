@@ -73,7 +73,7 @@ class Dashboard extends React.Component {
       <>
         <div className="content">
           <Card>
-              <CardImg top src={warehouseImage} alt={"Loading Video..."}></CardImg>
+              <CardImg top src="http://192.168.2.63:8080/?action=stream" alt={"Loading Video..."}></CardImg>
               <CardBody>
                   <CardTitle>Controls</CardTitle>
                   <Row>

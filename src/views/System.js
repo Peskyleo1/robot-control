@@ -127,22 +127,7 @@ function testClick(param){
     
     
 }
-document.addEventListener("DOMContentLoaded", function(event) { 
-    //Wait for document to be loaded
-    document.getElementById("WL").addEventListener('DOMSubtreeModified', myFunction);
 
-    function myFunction(e) {
-        //WL Changed
-        console.log(document.getElementById("WL").innerHTML);
-        if(document.getElementById("WL")) {
-            console.log("WL exists");
-            return document.getElementById("WL").innerHTML;
-        } else {
-            console.log("WL does not exist");
-            return "1";
-        }
-    }
-});
 
 
 
@@ -260,7 +245,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Water Level</CardTitle>
                         <CardText id="WL" onChange={() => console.log("change")}>76</CardText>
-                        <Progress id="WLval" value={getValue()}></Progress>
+                        <Progress id="WLval"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -342,6 +327,7 @@ class System extends React.Component {
             </Col>
         </Row>
         <h3>ONBOARD SYSTEMS</h3>
+        
         <Row>
             <Col>
                 <Card style={{width: '100%'}}>
@@ -510,6 +496,17 @@ class System extends React.Component {
                         <CardTitle>Seq 1</CardTitle>
                         <CardText>Inactive</CardText>
                         <Button onClick={() => loadXMLDoc(13)} color="primary" style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
+                    </CardBody>
+                </Card>
+            </Col>
+        </Row>
+        <Row>
+            <Col>
+                <Card style={{width: '100%'}}>
+                    <CardBody>
+                        <CardTitle>Abort</CardTitle>
+                        <CardText>GO</CardText>
+                        <Button onClick={() => loadXMLDoc(18)} color="danger" style={{width: '100%'}}><i className="tim-icons icon-button-power" /></Button>
                     </CardBody>
                 </Card>
             </Col>
