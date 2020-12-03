@@ -511,10 +511,6 @@ class System extends React.Component {
                 </Card>
             </Col>
         </Row>
-        <div >
-            <button onClick={() => testClick("88")} type="button">UV On</button>
-            <button onClick={() => testClick("22")} type="button">UV Off</button>
-        </div>
         </div>
       </>
     );
