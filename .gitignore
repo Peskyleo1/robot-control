@@ -4,3 +4,5 @@ package-lock.json
 
 /.github
 /Documentation
+
+.DS_Store
