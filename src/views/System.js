@@ -311,10 +311,6 @@ class System extends React.Component {
                         <CardTitle>Ozone</CardTitle>
                         <CardText id="oz" onChange={passValue}>289 DU</CardText>
                         <Progress id="oz-val"></Progress>
-                        <button onClick={() => {for(var i in data){ data[i] = "88"}}}>Test +</button>
-                        <button onClick={() => {for(var i in data){ data[i] = "11"}}}>Test -</button>
-                        <button onClick={() => console.log(data.ozone)}>Log</button>
-                        <button onClick={passValue}>Pass</button>
                     </CardBody>
                 </Card>
             </Col>
