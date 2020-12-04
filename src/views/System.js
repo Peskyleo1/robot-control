@@ -36,6 +36,14 @@ import {
   chartExample4
 } from "variables/charts.js";
 
+import dynamicData from "../data/data.json"
+
+document.addEventListener("DOMSubtreeModified", function(event) { 
+    //Wait for document to be loaded
+    //console.log("changes");
+    passValue();
+});
+
 function loadXMLDoc( action)
         {
             var xmlhttp;
@@ -138,13 +146,7 @@ function getValue(param){
         //console.log("changes");
         
     });
-    if(document.getElementById("WL")) {
-        console.log("WL exists");
-        return document.getElementById("WL").innerHTML;
-    } else {
-        console.log("WL does not exist");
-        return "1";
-    }
+    return dynamicData.ozone;
 }
 
 //Passes value to progressbar
@@ -153,9 +155,33 @@ function passValue(param){
         //Wait for document to be loaded
         
     });
-    if(document.getElementById("WLval")) {
+    if(document.getElementById("wl-val")) {
         console.log("WLval exists");
-        document.getElementById("WLval").value = document.getElementById("WL").innerHTML;
+        dynamicData.temperature = parseFloat(document.getElementById("temp").innerHTML) + 20;
+        dynamicData.flow = parseFloat(document.getElementById("flow").innerHTML) + 0;
+        dynamicData.humidity = parseFloat(document.getElementById("hum").innerHTML);
+        dynamicData.waterLevel = parseFloat(document.getElementById("WL").innerHTML) * 20;
+        dynamicData.timeOfFlight = parseFloat(document.getElementById("ToF").innerHTML) + 0;
+        dynamicData.amps = parseFloat(document.getElementById("current").innerHTML) + 0;
+        dynamicData.ping = parseFloat(document.getElementById("ping").innerHTML) + 0;
+        dynamicData.ozone = parseFloat(document.getElementById("oz").innerHTML) + 0;
+        dynamicData.lux = parseFloat(document.getElementById("lux").innerHTML) + 0;
+        dynamicData.fc1 = parseFloat(document.getElementById("switch1").innerHTML) + 0;
+        dynamicData.fc2 = parseFloat(document.getElementById("switch2").innerHTML) + 0;
+
+        document.getElementById("temp-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.temperature + "%");
+        document.getElementById("flow-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.flow + "%");
+        document.getElementById("hum-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.humidity + "%");
+        document.getElementById("wl-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.waterLevel + "%");
+        document.getElementById("tof-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.timeOfFlight + "%");
+        document.getElementById("amps-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.amps + "%");
+        document.getElementById("ping-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.ping + "%");
+        document.getElementById("oz-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.ozone + "%");
+        document.getElementById("lux-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.lux + "%");
+        document.getElementById("sw1-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.fc1 + "%");
+        document.getElementById("sw2-val").querySelector(".progress-bar").setAttribute("style", "width: " + dynamicData.fc2 + "%");
+        document.getElementById("empty-val").querySelector(".progress-bar").setAttribute("style", "width: " + "100" + "%");
+        //console.log(document.getElementById("WLval").querySelector(".progress-bar").getAttribute("aria-valuenow"));
     } else {
         console.log("WLval does not exist");
         return "1";
@@ -177,8 +203,9 @@ class System extends React.Component {
       bigChartData: name
     });
   };
+
   render() {
-    let water;
+    let data = dynamicData;
     return (
       <>
         <div className="content">
@@ -218,7 +245,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Temperature</CardTitle>
                         <CardText id="temp">22°C</CardText>
-                        <Progress value="33"></Progress>
+                        <Progress id="temp-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -227,7 +254,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Flow</CardTitle>
                         <CardText id="flow">0.2 L/min</CardText>
-                        <Progress value="20"></Progress>
+                        <Progress id="flow-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -236,7 +263,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Humidity</CardTitle>
                         <CardText id="hum">NOT RESPONDING</CardText>
-                        <Progress value="100"></Progress>
+                        <Progress id="hum-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -245,7 +272,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Water Level</CardTitle>
                         <CardText id="WL" onChange={() => console.log("change")}>76</CardText>
-                        <Progress id="WLval"></Progress>
+                        <Progress id="wl-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -256,7 +283,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Time of Flight</CardTitle>
                         <CardText id="ToF">22 cm</CardText>
-                        <Progress value="70"></Progress>
+                        <Progress id="tof-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -265,7 +292,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Current</CardTitle>
                         <CardText id="current">0.2 Amps</CardText>
-                        <Progress value="24"></Progress>
+                        <Progress id="amps-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -274,7 +301,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Ping</CardTitle>
                         <CardText id="ping">20 ms</CardText>
-                        <Progress value="20"></Progress>
+                        <Progress id="ping-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -282,8 +309,12 @@ class System extends React.Component {
                 <Card style={{width: '100%'}}>
                     <CardBody>
                         <CardTitle>Ozone</CardTitle>
-                        <CardText id="oz">289 DU</CardText>
-                        <Progress value="20"></Progress>
+                        <CardText id="oz" onChange={passValue}>289 DU</CardText>
+                        <Progress id="oz-val"></Progress>
+                        <button onClick={() => {for(var i in data){ data[i] = "88"}}}>Test +</button>
+                        <button onClick={() => {for(var i in data){ data[i] = "11"}}}>Test -</button>
+                        <button onClick={() => console.log(data.ozone)}>Log</button>
+                        <button onClick={passValue}>Pass</button>
                     </CardBody>
                 </Card>
             </Col>
@@ -294,7 +325,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Light</CardTitle>
                         <CardText id="lux">22 cm</CardText>
-                        <Progress value="70"></Progress>
+                        <Progress id="lux-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -303,16 +334,16 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Switch1</CardTitle>
                         <CardText id="switch1">0.2 Amps</CardText>
-                        <Progress value="24"></Progress>
+                        <Progress id="sw1-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
             <Col>
                 <Card style={{width: '100%'}}>
                     <CardBody>
-                        <CardTitle>Switch1</CardTitle>
+                        <CardTitle>Switch2</CardTitle>
                         <CardText id="switch2">20 ms</CardText>
-                        <Progress value="20"></Progress>
+                        <Progress id="sw2-val"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -321,7 +352,7 @@ class System extends React.Component {
                     <CardBody>
                         <CardTitle>Empty</CardTitle>
                         <CardText id="Test">289 DU</CardText>
-                        <Progress color="danger" value="20"></Progress>
+                        <Progress id="empty-val" color="danger"></Progress>
                     </CardBody>
                 </Card>
             </Col>
@@ -512,6 +543,8 @@ class System extends React.Component {
             </Col>
         </Row>
         </div>
+        
+
       </>
     );
   }

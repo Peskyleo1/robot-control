@@ -75,26 +75,63 @@
                     $xml = $( xmlDoc );
                     //$value1 = $xml.find( "rss" ); $( "#xmlmess" ).text( $value1.text() );
                     //Sensore Temperatura
-                    $value1 = $xml.find( "temp" ); $( "#temp" ).text( $value1.text() );
+                    $temp = $xml.find( "temp" ); 
+                    $( "#temp" ).text( $temp.text() );
+
                     //Sensore Hum
-                    $value1 = $xml.find( "hum" ); $( "#hum" ).text( $value1.text() );
+                    $hum = $xml.find( "hum" ); 
+                    $( "#hum" ).text( $hum.text() );
+
                     //Sensore Flow
-                    $value1 = $xml.find( "flowrate" ); $( "#flow" ).text( $value1.text() );
+                    $flow = $xml.find( "flowrate" ); 
+                    $( "#flow" ).text( $flow.text() );
+
                     //Sensore Water Level
-                    $value1 = $xml.find( "gleveld" ); $( "#WL" ).text( $value1.text() ); $( "#WLval" ).val( $value1.toString());
+                    $water = $xml.find( "gleveld" ); 
+                    $( "#WL" ).text( $water.text() ); 
+                    $( "#WLval" ).val( $water.toString());
+
                     //Sensore ToF
-                    $value1 = $xml.find( "tof" ); $( "#ToF" ).text( $value1.text() );
+                    $tof = $xml.find( "tof" ); 
+                    $( "#ToF" ).text( $tof.text() );
+
                     //Sensore Ping
-                    $value1 = $xml.find( "ping" ); $( "#ping" ).text( $value1.text() );
+                    $ping = $xml.find( "ping" ); 
+                    $( "#ping" ).text( $ping.text() );
+
                     //Sensore Corrente
-                    $value1 = $xml.find( "amperometro" ); $( "#current" ).text( $value1.text() );
+                    $amps = $xml.find( "amperometro" ); 
+                    $( "#current" ).text( $amps.text() );
+
                     //Sensore Ozono
-                    $value1 = $xml.find( "ozono" ); $( "#oz" ).text( $value1.text() );
+                    $oz = $xml.find( "ozono" ); 
+                    $( "#oz" ).text( $oz.text() );
+
                     //Limit Switch
-                    $value1 = $xml.find( "finecorsauno" ); $( "#switch1" ).text( $value1.text() );
-                    $value1 = $xml.find( "finecorsadue" ); $( "#switch2" ).text( $value1.text() );
+                    $fc1 = $xml.find( "finecorsauno" ); 
+                    $( "#switch1" ).text( $fc1.text() );
+                    $fc2 = $xml.find( "finecorsadue" ); 
+                    $( "#switch2" ).text( $fc2.text() );
+
                     //Sensore Lux
-                    $value1 = $xml.find( "luxuno" ); $( "#lux" ).text( $value1.text() );
+                    $lux = $xml.find( "luxuno" ); 
+                    $( "#lux" ).text( $lux.text() );
+
+                    let dynamicData = {
+                      temperature: $temp,
+                      humidity: $hum,
+                      flow: $flow,
+                      waterLevel: $water,
+                      timeOfFlight: $tof,
+                      ping: $ping,
+                      amps: $amps,
+                      ozone: $oz,
+                      fc1: $fc1,
+                      fc2: $fc2,
+                      lux: $lux
+                    }
+
+                    window._DYNAMIC_DATA = JSON.stringify(dynamicData);
                 }
             }
             xmlhttp.open("GET","/robo/getCacheValue.php?test=temp$hum$flowrate$gleveld$tof$ping$amperometro$ozono$finecorsauno$finecorsadue$luxuno",true);

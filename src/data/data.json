@@ -1,0 +1,13 @@
+{
+    "temperature": "11",
+    "humidity": "22",
+    "flow": "33",
+    "waterLevel": "44",
+    "timeOfFlight": "55",
+    "ping": "66",
+    "amps": "77",
+    "ozone": "10",
+    "fc1": "93",
+    "fc2": "12",
+    "lux": "43"
+}
