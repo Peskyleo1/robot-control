@@ -164,7 +164,7 @@ function passValue(param){
         dynamicData.timeOfFlight = parseFloat(document.getElementById("ToF").innerHTML) / 2;
         dynamicData.amps = parseFloat(document.getElementById("current").innerHTML) - 5000;
         dynamicData.ping = parseFloat(document.getElementById("ping").innerHTML) + 0;
-        dynamicData.ozone = (parseFloat(document.getElementById("oz").innerHTML) - 7) * 100;
+        dynamicData.ozone = (parseFloat(document.getElementById("oz").innerHTML) *20) - 100;
         dynamicData.lux = parseFloat(document.getElementById("lux").innerHTML) * 20;
         dynamicData.fc1 = parseFloat(document.getElementById("switch1").innerHTML) + 0;
         dynamicData.fc2 = parseFloat(document.getElementById("switch2").innerHTML) + 0;
